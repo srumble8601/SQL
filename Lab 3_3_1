@@ -1,0 +1,9 @@
+-- Retrieve the names of customers who have spent > $40 in total
+-- Display total spent DESC
+SELECT CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName, 
+       SUM(i.total) AS TotalSpend
+From Customer c 
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName
+HAVING SUM(i.Total) > 40
+ORDER BY SUM(i.Total) DESC;
