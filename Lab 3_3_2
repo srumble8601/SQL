@@ -1,0 +1,11 @@
+-- Identify each artist and total nbr of tracks
+-- in the 'rock' genre
+SELECT ar.Name AS ArtistName,
+       COUNT(t.TrackId) AS RockTracks
+FROM Artist ar
+JOIN Album al ON ar.ArtistId = al.ArtistId
+JOIN Track t ON al.AlbumId = t.AlbumId
+JOIN Genre g ON t.GenreId = g.GenreId
+WHERE g.Name = 'Rock'
+GROUP BY ar.Name
+ORDER BY RockTracks DESC;
