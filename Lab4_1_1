@@ -1,0 +1,14 @@
+-- Create View 'View_CustomerInvoices' that provides
+-- a summary of customer invoice data
+-- Include Customer's first name, last name, 
+-- total number of invoices for each customer
+-- total amount spent by each customer
+-- Group by customer's first and last names
+CREATE VIEW View_CustomerInvoices AS
+SELECT c.FirstName AS CustomerFirstName,
+       c.LastName AS CustomerLastName,
+       COUNT(i.InvoiceId) AS NumberOfInvoices,
+       SUM(i.Total) AS InvoiceTotal
+FROM Customer c 
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName;
