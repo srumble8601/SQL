@@ -1,0 +1,13 @@
+ALTER VIEW View_CustomerInvoices AS
+SELECT CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+       COUNT(i.InvoiceId) AS NbrOfInvoices,
+       SUM(i.Total) AS TotalAmtSpent
+FROM Customer c 
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+WHERE c.Company IS NOT NULL
+GROUP BY c.FirstName, c.LastName, c.Company;
+
+SELECT * FROM View_CustomerInvoices
+ORDER BY CustomerName;
+
+DROP VIEW View_CustomerInvoices;
