@@ -12,3 +12,9 @@ SELECT c.FirstName AS CustomerFirstName,
 FROM Customer c 
 JOIN Invoice i ON c.CustomerId = i.CustomerId
 GROUP BY c.FirstName, c.LastName;
+
+SELECT TOP 10 CustomerFirstName, CustomerLastName, InvoiceTotal 
+FROM View_CustomerInvoices
+ORDER BY InvoiceTotal;
+
+
